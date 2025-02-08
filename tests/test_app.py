@@ -1,3 +1,7 @@
+
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + "/.."))
 import pytest
 from app import app  
 
@@ -12,4 +16,4 @@ def test_home(client):
     """Test if home route is working"""
     response = client.get("/")
     assert response.status_code == 200
-    assert b"Welcome" in response.data  
+    assert b"Hello" in response.data  
