@@ -50,21 +50,23 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     needs: docker_build
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
+    - name: Configure AWS credentials using OIDC
+      uses: aws-actions/configure-aws-credentials@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        role-to-assume: arn:aws:iam::AKIATBRPQAZNF6XR4MUR:role/GitHubActionsEKSRole
         aws-region: us-east-1
     
     - name: Update kubeconfig
-      run: aws eks update-kubeconfig --region us-east-1 --name my-flask-app
+      run: aws eks update-kubeconfig --region us-east-1 --name web-quickstart
         
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f kubernetes/
+        kubectl apply -f k8s/
