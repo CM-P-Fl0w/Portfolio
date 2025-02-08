@@ -62,7 +62,7 @@ jobs:
     - name: Configure AWS credentials using OIDC
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: arn:aws:iam::AKIATBRPQAZNF6XR4MUR:role/GitHubActionsEKSRole
+        role-to-assume: arn:aws:iam::209479272026:role/GitHubActionsEKSRole
         aws-region: us-east-1
     
     - name: Update kubeconfig
