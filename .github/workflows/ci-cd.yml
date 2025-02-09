@@ -59,18 +59,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Get OIDC token
-      id: oidc_token
-      run: |
-       echo "::set-output name=token::$(curl -H "Authorization: Bearer ${{ github.token }}" https://token.actions.githubusercontent.com)"
-    
-    - name: Assume Role using OIDC Token
-      run: |
-        TOKEN="${{ steps.oidc_token.outputs.token }}"
-        aws sts assume-role-with-web-identity \
-          --role-arn arn:aws:iam::209479272026:role/GitHubActionsEKSRole \
-          --role-session-name GitHubSession \
-          --web-identity-token $TOKEN
     
       
     - name: Configure AWS credentials using OIDC
