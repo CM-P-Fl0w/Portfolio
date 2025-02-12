@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: flask-app
   annotations:
-  prometheus.io/scrape: "true"
-  prometheus.io/port: "5000"
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "5000"
 
 spec:
   replicas: 1
@@ -22,3 +22,4 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+        - containerPort: 8000 
