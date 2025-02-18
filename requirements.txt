@@ -5,6 +5,5 @@ flask-testing
 prometheus_flask_exporter
 flask_mail
 requests
-redirect
 flash
 render_template
