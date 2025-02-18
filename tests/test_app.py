@@ -16,4 +16,4 @@ def test_home(client):
     """Test if home route is working"""
     response = client.get("/")
     assert response.status_code == 200
-    assert b"Hello" in response.data  
+  

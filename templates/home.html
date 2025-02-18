@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero parallax">
+    <div class="container text-center">
+        <h1>Welcome to My Portfolio!</h1>
+        <p>Building and Automating Cloud Infrastructure</p>
+        <img src="c:\Users\chris\Downloads\PXL_20250120_175851556.MP~2.jpg" alt="Profile Pic">
+        <a href="https://www.linkedin.com/in/christian-manley-peterman-2aa4422b5/" class="btn btn-primary" target="_blank">LinkedIn Profile</a>
+        <a href="https://github.com/CM-P-Fl0w" class="btn btn-primary" target="_blank">GitHub</a>
+        
+    </div>
+</section>
+
+
+<!-- Projects Preview -->
+<section class="container mt-5 fade-in">
+    <h2 class="text-center">My Projects</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/project1.jpg') }}" class="card-img-top" alt="Project">
+                <div class="card-body">
+                    <h5 class="card-title">Flask Microservice</h5>
+                    <p class="card-text">A scalable microservice deployed with Docker & Kubernetes, CI/CD through GitHub</p>
+                    <a href="/projects" class="btn btn-primary">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

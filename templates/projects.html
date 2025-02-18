@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container mt-5">
+    <h2 class="text-center">Projects</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/project1.jpg') }}" class="card-img-top" alt="Project 1">
+                <div class="card-body">
+                    <h5 class="card-title">Flask App</h5>
+                    <p class="card-text">My first ever simple flask app deployed with Docker & Kubernetes over a CI/CD pipeline.</p>
+                    <a href="https://github.com/CM-P-Fl0w/flask-ci-cd" class="btn btn-primary" target="_blank">GitHub Repo</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/project1.jpg') }}" class="card-img-top" alt="Project 2">
+                <div class="card-body">
+                    <h5 class="card-title">Flask Microservice</h5>
+                    <p class="card-text">This Portfolio is a Flask microservice deployed with Docker and Kubernetes, using Terraform as IaaS. It uses Github for CI/CD and AWS for cloud services. </p>
+                    <a href="https://github.com/CM-P-Fl0w/flask-ci-cd" class="btn btn-primary" target="_blank">GitHub Repo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

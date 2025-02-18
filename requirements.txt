@@ -3,3 +3,8 @@ werkzeug
 pytest
 flask-testing
 prometheus_flask_exporter
+flask_mail
+request
+redirect
+flash
+render_template
