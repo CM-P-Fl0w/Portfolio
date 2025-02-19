@@ -6,4 +6,3 @@ prometheus_flask_exporter
 flask_mail
 requests
 flash
-render_template
