@@ -35,13 +35,13 @@ def contact():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
-        message_content = message.form['message']
+        message_content = request.form['message']
 
         if not name or not email or not message_content:
             flash("All fields are required!", "danger")
             return redirect('/contact')
         msg = Message(subject=f"New Contact form submission from {name}",
-                      sender=email
+                      sender=email,
                       recipients=[os.environ.get('EMAIL_USER')],
                       body=f"From: {name} <{email}>\n\n{message_content}")
         try:
