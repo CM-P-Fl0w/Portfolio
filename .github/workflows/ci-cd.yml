@@ -75,4 +75,4 @@ jobs:
         
     - name: Deploy to Kubernetes
       run: |
-        kubectl set image deployment/your-deployment your-container=${{ secrets.DOCKER_USERNAME }}/my-flask-app:$IMAGE_TAG
+        kubectl set image deployment/flask-app flask-app=${{ secrets.DOCKER_USERNAME }}/my-flask-app:$IMAGE_TAG
