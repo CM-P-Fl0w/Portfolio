@@ -48,7 +48,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        MAGE_TAG=$(date +%s)
+        IMAGE_TAG=$(date +%s)
         docker build -t ${{ secrets.DOCKER_USERNAME }}/my-flask-app:$IMAGE_TAG .
         docker push ${{ secrets.DOCKER_USERNAME }}/my-flask-app:$IMAGE_TAG
         echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
