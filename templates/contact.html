@@ -3,20 +3,30 @@
 {% block content %}
 <section class="container mt-5">
     <h2 class="text-center">Contact Me</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <div class="contact-form">
         <form method="POST" action="/contact">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
                 <label for="name">Your Name</label>
             </div>
             
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
                 <label for="email">Your Email</label>
             </div>
             
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="message" placeholder="Your Message" style="height: 150px;"></textarea>
+                <textarea class="form-control" id="message" name="message" placeholder="Your Message" style="height: 150px;"></textarea>
                 <label for="message">Your Message</label>
             </div>
             
@@ -27,7 +37,7 @@
     </div>
 </section>
 <div>
-    <h2>                You May also contact me by phone directly at:</h2>
-    <h3>                            (262)336-0830</h3>
+    <h2>You may also contact me by phone directly at:</h2>
+    <h3>(262)336-0830</h3>
 </div>
 {% endblock %}

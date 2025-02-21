@@ -6,6 +6,7 @@ import os
 
 app = Flask(__name__)
 # metrics = PrometheusMetrics(app)
+app.secret_key = os.environ.get("SECRET_KEY", "your_default_secret_key")
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Use your email provider's SMTP server
 app.config['MAIL_PORT'] = 587  # Port for TLS
@@ -30,19 +31,32 @@ def projects():
 def blog():
     return render_template('about.html')
 
+
+
+# Mail configuration
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_USE_TLS"] = True
+app.config["MAIL_USERNAME"] = os.environ.get("EMAIL_USER")  # Must be set
+app.config["MAIL_PASSWORD"] = os.environ.get("EMAIL_PASS")  # Must be set
+mail = Mail(app)
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        message_content = request.form['message']
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        message_content = request.form.get('message', '').strip()
 
         if not name or not email or not message_content:
             flash("All fields are required!", "danger")
             return redirect('/contact')
+
+        recipient_email = os.environ.get('EMAIL_USER', 'default@example.com')
+
         msg = Message(subject=f"New Contact form submission from {name}",
                       sender=email,
-                      recipients=[os.environ.get('EMAIL_USER')],
+                      recipients=[recipient_email],
                       body=f"From: {name} <{email}>\n\n{message_content}")
         try:
             mail.send(msg)
@@ -52,8 +66,8 @@ def contact():
 
         return redirect('/contact')
 
-
     return render_template('contact.html')
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
