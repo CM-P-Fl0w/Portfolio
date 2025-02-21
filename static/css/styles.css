@@ -4,49 +4,6 @@ body {
     color: #333333;
 }
 
-/* Dark Mode */
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-/* Navbar in Dark Mode */
-.dark-mode .navbar {
-    background-color: #222;
-    color: white;
-}
-
-/* Card Styling in Dark Mode */
-.dark-mode .card {
-    background-color: #1e1e1e;
-    color: white;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Button Styling */
-#dark-mode-toggle {
-    cursor: pointer;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    color: #333;
-    transition: background 0.3s ease-in-out;
-}
-
-#dark-mode-toggle:hover {
-    background-color: #ddd;
-}
-
-.dark-mode #dark-mode-toggle {
-    background-color: #444;
-    color: white;
-}
-
-.dark-mode #dark-mode-toggle:hover {
-    background-color: #666;
-}
-
 
 .btn-primary {
     background-color: var(--btn-bg);
@@ -102,3 +59,13 @@ body.dark-mode {
     background: rgba(255, 255, 255, 0.9) !important;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.profile-pic {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 3px solid #fff; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
