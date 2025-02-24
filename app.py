@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 # metrics = PrometheusMetrics(app)
-app.secret_key = os.environ.get("SECRET_KEY")
+app.secret_key = os.getenv("SECRET_KEY", "fallback_default_key")
 
 if not app.secret_key:
     raise ValueError("No SECRET_KEY set for Flask application. Did you set it in your environment?")

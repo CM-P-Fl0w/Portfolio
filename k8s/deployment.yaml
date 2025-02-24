@@ -19,6 +19,13 @@ spec:
       containers:
       - name: flask-app
         image: cmpfl0w/my-flask-app:latest
+        env: 
+        - name: SECRET_KEY
+        valuefrom:
+          secretKeyRef: 
+            name: flask-secret
+            key: SECRET_KEY
+
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
