@@ -78,15 +78,20 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
+
+    - name: Update kubeconfig
+      run: aws eks update-kubeconfig --region us-east-1 --name web-quickstart
+
+    - name: Debug AWS Identity
+      run: aws sts get-caller-identity 
+
     - name: Debug Kubernetes Connection
-      run: kubectl get nodes
+      run: kubectl get nodes 
 
     - name: Create Kubernetes Secret
       run: |
         kubectl create secret generic flask-secret --from-literal=SECRET_KEY=${{ secrets.SECRET_KEY }} --dry-run=client -o yaml | kubectl apply -f - --validate=false
-    
-    - name: Update kubeconfig
-      run: aws eks update-kubeconfig --region us-east-1 --name web-quickstart
+
         
     - name: Deploy to Kubernetes
       run: |
