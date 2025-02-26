@@ -90,7 +90,7 @@ jobs:
 
     - name: Create Kubernetes Secret
       run: |
-        kubectl create secret generic flask-secret --from-literal=SECRET_KEY=${{ secrets.SECRET_KEY }} --dry-run=client -o yaml | kubectl apply -f - --validate=false
+        kubectl create secret generic flask-secret --from-literal=SECRET_KEY=${{ secrets.SECRET_KEY }} \ --from-literal=EMAIL_USER='${{ secrets.EMAIL_USER }} \ --dry-run=client -o yaml | kubectl apply -f - --validate=false
 
         
     - name: Deploy to Kubernetes
