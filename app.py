@@ -15,7 +15,7 @@ app.config["MAIL_SERVER"] = "smtp.sendgrid.net"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USERNAME"] = "apikey" 
-app.config["MAIL_PASSWORD"] = os.environ.get("SECRET_KEY")  
+app.config["MAIL_PASSWORD"] = os.environ.get("SENDGRID_API_KEY")  
 app.config["MAIL_DEFAULT_SENDER"] = os.getenv("EMAIL_USER", "cjmanleywork@gmail.com") 
 
 mail = Mail(app)
@@ -46,7 +46,7 @@ def contact():
             flash("All fields are required!", "danger")
             return redirect('/contact')
 
-        recipient_email = os.environ.get('EMAIL_USER', 'default@example.com')
+        recipient_email = os.environ.get('EMAIL_USER')
 
         msg = Message(subject=f"New Contact form submission from {name}",
                       sender=email,

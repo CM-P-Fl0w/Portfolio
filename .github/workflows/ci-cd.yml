@@ -92,6 +92,7 @@ jobs:
       run: |
         kubectl create secret generic flask-secret \
           --from-literal=SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+          --from-literal=SENDGRID_API_KEY="${{ secrets.SENDGRID_API_KEY }}" \
           --from-literal=EMAIL_USER="${{ secrets.EMAIL_USER }}" \
           --dry-run=client -o yaml | kubectl apply -f - --validate=false
 
