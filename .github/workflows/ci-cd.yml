@@ -55,6 +55,11 @@ jobs:
         echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
         echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_OUTPUT
 
+    - name: Set environment variables
+      run: |
+        echo "SENDGRID_API_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+        echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" >> $GITHUB_ENV
+
     - name: Build and push Docker image
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/my-flask-app:${{ steps.set_image_tag.outputs.IMAGE_TAG }} .
@@ -82,11 +87,6 @@ jobs:
     - name: Update kubeconfig
       run: aws eks update-kubeconfig --region us-east-1 --name web-quickstart
 
-    - name: Debug AWS Identity
-      run: aws sts get-caller-identity 
-
-    - name: Debug Kubernetes Connection
-      run: kubectl get nodes 
 
     - name: Create Kubernetes Secret
       run: |

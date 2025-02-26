@@ -15,8 +15,8 @@ app.config["MAIL_SERVER"] = "smtp.sendgrid.net"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USERNAME"] = "apikey" 
-app.config["MAIL_PASSWORD"] = os.environ.get("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")  # Store API key in environment variables
-app.config["MAIL_DEFAULT_SENDER"] = "cjmanleywork@gmail.com" 
+app.config["MAIL_PASSWORD"] = os.environ.get("SECRET_KEY")  
+app.config["MAIL_DEFAULT_SENDER"] = os.getenv("EMAIL_USER", "cjmanleywork@gmail.com") 
 
 mail = Mail(app)
 
