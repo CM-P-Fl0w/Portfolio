@@ -19,14 +19,25 @@ spec:
       containers:
       - name: flask-app
         image: cmpfl0w/my-flask-app:latest
-        env: 
-        - name: SECRET_KEY
-        valuefrom:
-          secretKeyRef: 
-            name: flask-secret
-            key: SECRET_KEY
+        env:
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: flask-secret
+                key: SECRET_KEY
+          - name: EMAIL_USER
+            valueFrom:
+              secretKeyRef:
+                name: flask-secret
+                key: EMAIL_USER
+          - name: SENDGRID_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: flask-secret
+                key: SENDGRID_API_KEY
 
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
         - containerPort: 8000 
+
