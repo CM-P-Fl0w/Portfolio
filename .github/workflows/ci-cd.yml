@@ -57,8 +57,9 @@ jobs:
 
     - name: Set environment variables
       run: |
-        echo "SENDGRID_API_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+        echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
         echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" >> $GITHUB_ENV
+        echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> $GITHUB_ENV
 
     - name: Build and push Docker image
       run: |
